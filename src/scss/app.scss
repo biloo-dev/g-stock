@@ -1,0 +1,88 @@
+$signal-strength-bar-height: 30px;
+$signal-strength-bar-width: 50px;
+
+$material-light: ('background': wheat);
+
+.sizing-box {
+ height: $signal-strength-bar-height;
+ width: $signal-strength-bar-width;
+}
+
+.signal-bars {
+ display: inline-block;
+}
+
+.signal-bars .bar {
+ width: 14%;
+ margin-left: 1%;
+ min-height: 20%;
+ display: inline-block;
+}
+
+.signal-bars .bar.first-bar {
+ height: 20%; 
+}
+
+.signal-bars .bar.second-bar {
+ height: 40%;
+}
+
+.signal-bars .bar.third-bar {
+ height: 60%;
+}
+
+.signal-bars .bar.fourth-bar {
+ height: 80%;
+}
+
+.signal-bars .bar.fifth-bar {
+ height: 99%;
+}
+
+.good .bar {
+ background-color: #16a085;
+ border: thin solid darken(#16a085, 7%);
+}
+
+.bad .bar {
+ background-color: #e74c3c;
+ border: thin solid darken(#e74c3c, 20%);
+}
+
+.ok .bar {
+ background-color: #f1c40f;
+ border: thin solid darken(#f1c40f, 7%);
+}
+
+.no-bar {
+ position: relative;
+}
+.no-bar .slash-bar::before {
+ content: 'X';
+ font-family: "algeria";
+ position: absolute; 
+ color: #333;  
+ font-size: 22px;
+ top: 10px;
+ left: -170%; 
+ transform: rotate(45deg);
+}
+.no-bar .slash-bar {
+ position: absolute;
+ width: 5px;
+ height: 45px;
+ top: -6px;
+ left: 40%;
+ background-color: #e74c3c;
+ transform: rotate(-45deg);
+}
+.four-bars .bar.fifth-bar,
+.three-bars .bar.fifth-bar,
+.three-bars .bar.fourth-bar,
+.one-bar .bar:not(.first-bar),
+.no-bar .bar,
+.two-bars .bar:not(.first-bar):not(.second-bar) {
+ background-color: #fafafa;
+ border: thin solid #f3f3f3;
+}
+

@@ -1,0 +1,136 @@
+
+//all operator provider name AT+COPN
+// to convert frpù TA - TE interface AT+CSCS="UCS2"? "IRA" ? "GSM"
++COPS: 
+(2,"ALG Mobilis","Mobilis","60301",2),
+(3,"DZA NEDJMA","NEDJMA","60303",0),
+(3,"DZA NEDJMA","NEDJMA","60303",2),
+(3,"Djezzy","Djezzy","60302",0),
+(3,"Djezzy","Djezzy","60302",2),
+,(0,1,2,3,4),(0,1,2)
+// Mobilis 0,2,"60301",2
+// Djezzy 0,2,"60302",2
+// Ooredoo 0,2,"60303",2
+AT^ICCID?
+//Read the model number
+AT+CGMM
+
+//Get the revision number
+AT+CGMR
+
+//Get the module manufacturer
+AT+CGMI
+
+//Get the device capabilities
+AT+GCAP
+
+//Get the ICCID of the SIM card
+AT^ICCID?
+
+Read the temperature
+AT^CHIPTEMP?
+
+//Check if temperature protection is enabled
+AT^THERMFUN?
+
+mobilis = Votre balance Arselli est  380 DZD.
+ooredoo = Votre credit storm-credit est 9282.00 Dinar
+djezzy = res :>>  VOTRE SOLDE EST 1479.36 DA. VOTRE BONUS EST 2855.20 DA.VOTRE BONUS INTERNET EST 0.00 MO.
+
+res :>>  Vous voulez transferer  50 DA vers le 659812181 1:Tapez 1 pour confirmer 
+  0:Tapez 0 pour annuler
+        
+
+
+
+
+-109	Marginal
+-107	Marginal
+-105	Marginal
+-103	Marginal
+-101	Marginal
+-99	Marginal
+-97	Marginal
+-95	Marginal
+	-93	OK
+	-91	OK
+	-89	OK
+	-87	OK
+	-85	OK
+	-83	Good
+	-81	Good
+	-79	Good
+	-77	Good
+	-75	Good
+	-73	Excellent
+	-71	Excellent
+	-69	Excellent
+	-67	Excellent
+	-65	Excellent
+	-63	Excellent
+	-61	Excellent
+	-59	Excellent
+	-57	Excellent
+	-55	Excellent
+	-53	Excellent
+
+
+
+
+
+
+
+
+
+
+
+
+
+ if (this.phoneNumber[1] == 7) {
+        let cmd = `*${this.CodeDjezzy}*${this.phoneNumber.replace(/\s/g, "")}*${
+          this.price
+        }*${this.djezzySettings.codePin}#`;
+       
+        this.djezzyRespose = null;
+        this.djezzyRespose = await Flexy(this.djezzy, cmd);
+        this.$store.dispatch("flexyDjezzy",data)
+        this.titleResponse = "Djezzy USSD Response";
+        this.Operator = 1;
+        if (this.djezzySettings.autoConfirmation == 1) {
+          this.response(0);
+        } else {
+          this.dialogResponce = true;
+        }
+      } else if (this.phoneNumber[1] == 6) {
+        // let cmd = `*${this.CodeMobilis}*1*${this.phoneNumber.replace(
+        //   /\s/g,
+        //   ""
+        // )}*${this.price}*${this.mobilisSettings.codePin}#`;
+         let cmd = `*610*1*${this.phoneNumber.replace(/\s/g, "")}*${this.price}*0000#`
+        console.log('cmd :>> ', cmd);
+        this.mobilisRespose = null;
+        this.mobilisRespose = await Flexy(this.mobilis, cmd);
+        // this.$store.dispatch("flexyMobilis",data)
+        this.titleResponse = "Mobilis USSD Response";
+        if (this.mobilisSettings.autoConfirmation == 1) {
+          this.response(0);
+        } else {
+          this.dialogResponce = true;
+        }
+        this.Operator = 2;
+      } else if (this.phoneNumber[1] == 5) {
+        let cmd = `*${this.CodeOoredoo}*${this.phoneNumber.replace(
+          /\s/g,
+          ""
+        )}*${this.price}*${this.ooredooSettings.codePin}#`;
+        this.ooredooRespose = null;
+        this.ooredooRespose = await Flexy(this.ooredoo, data);
+        // this.$store.dispatch("flexyOredoo",data)
+        this.titleResponse = "Ooredoo USSD Response";
+        if (this.ooredooSettings.autoConfirmation == 1) {
+          this.response(0);
+        } else {
+          this.dialogResponce = true;
+        }
+        this.Operator = 3;
+      }

@@ -1,0 +1,135 @@
+;/*++
+;
+;Copyright (c) MBB Corporation All rights Reserved
+;
+;Module Name:
+;
+;    massfilter.inf
+;
+;Abstract:
+;    INF file for installing CDROM device drivers on 32-bit Windows OS, such as Vista.
+;--*/
+;Based on Version 1.0.0.13
+
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=USB
+ClassGuid={36FC9E60-C465-11CF-8056-444553540000}
+Provider=%MBB%
+DriverVer=04/14/2011,1.0.0.14
+CatalogFile=massfilter.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;*************************
+; Source file information
+;*************************
+
+[SourceDisksNames]
+1 = %MBBSRCDISK%,,,""
+
+[SourceDisksFiles]
+massfilter.sys  = 1,,
+
+[DestinationDirs]
+DefaultDestDir = 12
+MBBFilter.NT.Copy=12
+
+;*****************************************
+; Massfilter Device Filter Install Section
+;*****************************************
+
+[Manufacturer]
+%StdMfg%=MBBMass,NTamd64
+
+[MBBMass]
+; DisplayName       		Section           DeviceId
+; -----------       		-------           --------
+%MBBFilter.1423%=MBBFilter, USB\VID_19D2&PID_1423
+%MBBFilter.2000%=MBBFilter, USB\VID_19D2&PID_2000
+%MBBFilter.0026%=MBBFilter, USB\VID_19D2&PID_0026
+%MBBFilter.0098%=MBBFilter, USB\VID_19D2&PID_0098
+%MBBFilter.0099%=MBBFilter, USB\VID_19D2&PID_0099
+%MBBFilter.0100%=MBBFilter, USB\VID_19D2&PID_0100
+%MBBFilter.0101%=MBBFilter, USB\VID_19D2&PID_0101
+%MBBFilter.0103%=MBBFilter, USB\VID_19D2&PID_0103
+%MBBFilter.1007%=MBBFilter, USB\VID_19D2&PID_1007
+%MBBFilter.1009%=MBBFilter, USB\VID_19D2&PID_1009
+%MBBFilter.A804%=MBBFilter, USB\VID_07D1&PID_A804
+%MBBFilter.0154%=MBBFilter, USB\VID_19D2&PID_0154
+
+[MBBMass.NTamd64]
+; DisplayName       		Section           DeviceId
+; -----------       		-------           --------
+%MBBFilter.1423%=MBBFilter, USB\VID_19D2&PID_1423
+%MBBFilter.2000%=MBBFilter, USB\VID_19D2&PID_2000
+%MBBFilter.0026%=MBBFilter, USB\VID_19D2&PID_0026
+%MBBFilter.0098%=MBBFilter, USB\VID_19D2&PID_0098
+%MBBFilter.0099%=MBBFilter, USB\VID_19D2&PID_0099
+%MBBFilter.0100%=MBBFilter, USB\VID_19D2&PID_0100
+%MBBFilter.0101%=MBBFilter, USB\VID_19D2&PID_0101
+%MBBFilter.0103%=MBBFilter, USB\VID_19D2&PID_0103
+%MBBFilter.1007%=MBBFilter, USB\VID_19D2&PID_1007
+%MBBFilter.1009%=MBBFilter, USB\VID_19D2&PID_1009
+%MBBFilter.A804%=MBBFilter, USB\VID_07D1&PID_A804
+%MBBFilter.0154%=MBBFilter, USB\VID_19D2&PID_0154
+
+;=====================================================================
+[MBBFilter.NT]  
+;=============== Get the standard stuff from Massfilter.inf==============
+Include=usbstor.inf
+Needs=USBSTOR_BULK.NT
+CopyFiles=MBBFilter.NT.Copy
+AddReg=MBBFilter.NT.AddReg
+
+[MBBFilter.NT.Copy]
+massfilter.sys
+
+[MBBFilter.NT.AddReg]                            
+; Add registry entries here
+
+[MBBFilter.NT.HW]
+;================ Add our own stuff
+AddReg = MBBFilter.NT.HW.AddReg
+
+[MBBFilter.NT.HW.AddReg]
+HKR,, Label, 0x10000, "MBB CDROM Mass Storage Device"
+HKR,,"LowerFilters",0x00010000,"massfilter"
+
+;*****************************************
+; Massfilter Device Filter Service Section
+;*****************************************
+
+[MBBFilter.NT.Services]
+Include=usbstor.inf
+Needs=USBSTOR_BULK.NT.Services
+AddService = massfilter,, filter_Service_Inst
+
+[filter_Service_Inst]
+DisplayName    = %filter.SvcDesc%                            
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\massfilter.sys
+LoadOrderGroup = PnP Filter
+
+[Strings]
+MBB                  = "MBB Incorporated"
+StdMfg               = "MBB CD-ROM Mass Storage Filter"
+MBBSRCDISK           = "MBB Multimedia USB Modem Driver Disk"
+filter.SvcDesc       = "MBB Mass Storage Filter Driver"
+MBBFilter.2000       = "MBB Mass Storage Filter"
+MBBFilter.0026       = "MBB Mass Storage Filter"
+MBBFilter.0098       = "MBB Mass Storage Filter"
+MBBFilter.0099       = "MBB Mass Storage Filter"
+MBBFilter.0100       = "MBB Mass Storage Filter"
+MBBFilter.0101       = "MBB Mass Storage Filter"
+MBBFilter.0103       = "MBB Mass Storage Filter"
+MBBFilter.1007       = "MBB Mass Storage Filter"
+MBBFilter.1009       = "MBB Mass Storage Filter"
+MBBFilter.A804       = "MBB Mass Storage Filter"
+MBBFilter.0154       = "MBB Mass Storage Filter"
+MBBFilter.1423       = "MBB Mass Storage Filter"
+

@@ -1,0 +1,26 @@
+module.exports=(seq,Type) =>
+        seq.define('settings',{ 
+            codeTrensfert: Type.INTEGER,
+            typeOperator: Type.INTEGER,
+            codeSolde: Type.INTEGER,
+            codeInternational: Type.INTEGER,
+            codePin : Type.STRING,
+            MsgIntTrn1 : Type.STRING,
+            MsgCnfTrn1 : Type.STRING,
+            MsgIntTrn2 : Type.STRING,
+            MsgCnfTrn2 : Type.STRING,
+            MsgIntTrn3 : Type.STRING,
+            MsgCnfTrn3 : Type.STRING,
+            codeFacteur : Type.INTEGER,
+            confYes : Type.INTEGER,
+            confNo : Type.INTEGER,
+            autoConfirmation : Type.BOOLEAN,
+            regexConsultation : Type.STRING,
+            buttonList : Type.STRING,
+            margeSome : Type.STRING,
+            autoDetectUSB : Type.BOOLEAN,
+            audioEnabled : Type.BOOLEAN,
+            audioSpeed : Type.INTEGER,
+            audioPerson : Type.STRING,
+         });
+//npx sequelize model:generate --name Settings --attributes codeTrensfert:INTEGER,typeOperator:INTEGER,codeSolde:INTEGER,codeInternational:INTEGER,codePin:STRING,MsgIntTrn1:STRING,MsgCnfTrn1:STRING,MsgInttTrn2:STRING,MsgCnfTrn2:STRING,MsgIntTrn3:STRING,MsgCnfTrn3:STRING,codeFacteur:INTEGER,confYes:INTEGER,confNo:INTEGER,autoConfirmation:BOOLEAN,regexConsultation:STRING,buttonList:STRING,margeSome:STRING,autoDetectUSB:BOOLEAN,audioEnabled:BOOLEAN,audioSpeed:INTEGER,audioPerson:STRING

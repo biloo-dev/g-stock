@@ -1,0 +1,212 @@
+; Windows Virtual Serial Port Setup File
+; Copyright (c) 2008 ZTE Incorporated
+; Manufacturer: ZTE Incorporated
+;
+;This INF file installs a virtual COM port on 32-bit and 64-bit Windows OS, such as Windows 2000, Windows XP and Vista.
+;SYS Ver 1.2074.0.6
+
+[Version]
+signature  = "$WINDOWS NT$"
+Class      = Ports
+Provider   = %ZTE%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer  = 07/04/2011,1.2074.0.8
+CatalogFile = ZTEusbnmea.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+1 = %ZTESRCDISK%,,,""
+
+[SourceDisksFiles]
+ZTEusbnmea.sys = 1,,
+
+[DestinationDirs]
+DefaultDestDir = 12
+ZTEportInstall.NT.Copy=12
+
+[Manufacturer]
+%ZTE% = ZTEcomSerialPort, NTamd64
+
+[ZTEcomSerialPort]
+;zte's driver to nmea's interface vid&pid&mi
+%ZTEDevice1245%   = ZTEportInstall, USB\VID_19D2&PID_1245&MI_01
+%ZTEDevice0001%   = ZTEportInstall, USB\VID_19D2&PID_0001&MI_02
+%ZTEDevice0002%   = ZTEportInstall, USB\VID_19D2&PID_0002&MI_04
+%ZTEDevice0012%   = ZTEportInstall, USB\VID_19D2&PID_0012&MI_04
+%ZTEDevice0015%   = ZTEportInstall, USB\VID_19D2&PID_0015&MI_03
+%ZTEDevice0016%   = ZTEportInstall, USB\VID_19D2&PID_0016&MI_01
+%ZTEDevice0017%   = ZTEportInstall, USB\VID_19D2&PID_0017&MI_01
+%ZTEDevice0021%   = ZTEportInstall, USB\VID_19D2&PID_0021&MI_01
+%ZTEDevice0025%   = ZTEportInstall, USB\VID_19D2&PID_0025&MI_04
+%ZTEDevice0030%   = ZTEportInstall, USB\VID_19D2&PID_0030&MI_03
+%ZTEDevice0031%   = ZTEportInstall, USB\VID_19D2&PID_0031&MI_01
+%ZTEDevice0033%   = ZTEportInstall, USB\VID_19D2&PID_0033&MI_01
+%ZTEDevice0042%   = ZTEportInstall, USB\VID_19D2&PID_0042&MI_01
+%ZTEDevice0043%   = ZTEportInstall, USB\VID_19D2&PID_0043&MI_02
+%ZTEDevice0048%   = ZTEportInstall, USB\VID_19D2&PID_0048&MI_02
+%ZTEDevice0049%   = ZTEportInstall, USB\VID_19D2&PID_0049&MI_02
+%ZTEDevice0052%   = ZTEportInstall, USB\VID_19D2&PID_0052&MI_01
+%ZTEDevice0055%   = ZTEportInstall, USB\VID_19D2&PID_0055&MI_04
+%ZTEDevice0061%   = ZTEportInstall, USB\VID_19D2&PID_0061&MI_01
+%ZTEDevice0063%   = ZTEportInstall, USB\VID_19D2&PID_0063&MI_01
+%ZTEDevice0064%   = ZTEportInstall, USB\VID_19D2&PID_0064&MI_00
+%ZTEDevice0066%   = ZTEportInstall, USB\VID_19D2&PID_0066&MI_01
+%ZTEDevice0086%   = ZTEportInstall, USB\VID_19D2&PID_0086&MI_01
+%ZTEDevice0104%   = ZTEportInstall, USB\VID_19D2&PID_0104&MI_01
+%ZTEDevice2002%   = ZTEportInstall, USB\VID_19D2&PID_2002&MI_01
+%ZTEDevice2003%   = ZTEportInstall, USB\VID_19D2&PID_2003&MI_01
+%ZTEDeviceFFEC%   = ZTEportInstall, USB\VID_19D2&PID_FFEC&MI_01
+%ZTEDevice0113%   = ZTEportInstall, USB\VID_19D2&PID_0113&MI_01
+%ZTEDevice0117%   = ZTEportInstall, USB\VID_19D2&PID_0117&MI_01
+%ZTEDevice0118%   = ZTEportInstall, USB\VID_19D2&PID_0118&MI_01
+%ZTEDevice0121%   = ZTEportInstall, USB\VID_19D2&PID_0121&MI_01
+%ZTEDevice0123%   = ZTEportInstall, USB\VID_19D2&PID_0123&MI_01
+%ZTEDevice0124%   = ZTEportInstall, USB\VID_19D2&PID_0124&MI_01
+%ZTEDevice0125%   = ZTEportInstall, USB\VID_19D2&PID_0125&MI_01
+%ZTEDevice0126%   = ZTEportInstall, USB\VID_19D2&PID_0126&MI_01
+%ZTEDevice0128%   = ZTEportInstall, USB\VID_19D2&PID_0128&MI_01
+%ZTEDevice0162%   = ZTEportInstall, USB\VID_19D2&PID_0162&MI_02
+%ZTEDevice0144%   = ZTEportInstall, USB\VID_19D2&PID_0144&MI_02
+%ZTEDevice0145%   = ZTEportInstall, USB\VID_19D2&PID_0145&MI_02
+%ZTEDevice1402%   = ZTEportInstall, USB\VID_19D2&PID_1402&MI_01
+%ZTEDevice0153%   = ZTEportInstall, USB\VID_19D2&PID_0153&MI_02
+%ZTEDevice0155%   = ZTEportInstall, USB\VID_19D2&PID_0155&MI_01
+%ZTEDevice1401%   = ZTEportInstall, USB\VID_19D2&PID_1401&MI_01
+%ZTEDevice0156%   = ZTEportInstall, USB\VID_19D2&PID_0156&MI_01
+%ZTEDevice0157%   = ZTEportInstall, USB\VID_19D2&PID_0157&MI_01
+%ZTEDevice0158%   = ZTEportInstall, USB\VID_19D2&PID_0158&MI_01
+%ZTEDevice0159%   = ZTEportInstall, USB\VID_19D2&PID_0159&MI_01
+%ZTEDevice1404%   = ZTEportInstall, USB\VID_19D2&PID_1404&MI_03
+%ZTEDevice1247%   = ZTEportInstall, USB\VID_19D2&PID_1247&MI_01
+
+[ZTEcomSerialPort.NTamd64]
+;zte's driver to nmea's interface vid&pid&mi
+%ZTEDevice1245%   = ZTEportInstall, USB\VID_19D2&PID_1245&MI_01
+%ZTEDevice0001%   = ZTEportInstall, USB\VID_19D2&PID_0001&MI_02
+%ZTEDevice0002%   = ZTEportInstall, USB\VID_19D2&PID_0002&MI_04
+%ZTEDevice0012%   = ZTEportInstall, USB\VID_19D2&PID_0012&MI_04
+%ZTEDevice0015%   = ZTEportInstall, USB\VID_19D2&PID_0015&MI_03
+%ZTEDevice0016%   = ZTEportInstall, USB\VID_19D2&PID_0016&MI_01
+%ZTEDevice0017%   = ZTEportInstall, USB\VID_19D2&PID_0017&MI_01
+%ZTEDevice0021%   = ZTEportInstall, USB\VID_19D2&PID_0021&MI_01
+%ZTEDevice0025%   = ZTEportInstall, USB\VID_19D2&PID_0025&MI_04
+%ZTEDevice0030%   = ZTEportInstall, USB\VID_19D2&PID_0030&MI_03
+%ZTEDevice0031%   = ZTEportInstall, USB\VID_19D2&PID_0031&MI_01
+%ZTEDevice0033%   = ZTEportInstall, USB\VID_19D2&PID_0033&MI_01
+%ZTEDevice0042%   = ZTEportInstall, USB\VID_19D2&PID_0042&MI_01
+%ZTEDevice0043%   = ZTEportInstall, USB\VID_19D2&PID_0043&MI_02
+%ZTEDevice0048%   = ZTEportInstall, USB\VID_19D2&PID_0048&MI_02
+%ZTEDevice0049%   = ZTEportInstall, USB\VID_19D2&PID_0049&MI_02
+%ZTEDevice0052%   = ZTEportInstall, USB\VID_19D2&PID_0052&MI_01
+%ZTEDevice0055%   = ZTEportInstall, USB\VID_19D2&PID_0055&MI_04
+%ZTEDevice0061%   = ZTEportInstall, USB\VID_19D2&PID_0061&MI_01
+%ZTEDevice0063%   = ZTEportInstall, USB\VID_19D2&PID_0063&MI_01
+%ZTEDevice0064%   = ZTEportInstall, USB\VID_19D2&PID_0064&MI_00
+%ZTEDevice0066%   = ZTEportInstall, USB\VID_19D2&PID_0066&MI_01
+%ZTEDevice0086%   = ZTEportInstall, USB\VID_19D2&PID_0086&MI_01
+%ZTEDevice0104%   = ZTEportInstall, USB\VID_19D2&PID_0104&MI_01
+%ZTEDevice2002%   = ZTEportInstall, USB\VID_19D2&PID_2002&MI_01
+%ZTEDevice2003%   = ZTEportInstall, USB\VID_19D2&PID_2003&MI_01
+%ZTEDeviceFFEC%   = ZTEportInstall, USB\VID_19D2&PID_FFEC&MI_01
+%ZTEDevice0113%   = ZTEportInstall, USB\VID_19D2&PID_0113&MI_01
+%ZTEDevice0117%   = ZTEportInstall, USB\VID_19D2&PID_0117&MI_01
+%ZTEDevice0118%   = ZTEportInstall, USB\VID_19D2&PID_0118&MI_01
+%ZTEDevice0121%   = ZTEportInstall, USB\VID_19D2&PID_0121&MI_01
+%ZTEDevice0123%   = ZTEportInstall, USB\VID_19D2&PID_0123&MI_01
+%ZTEDevice0124%   = ZTEportInstall, USB\VID_19D2&PID_0124&MI_01
+%ZTEDevice0125%   = ZTEportInstall, USB\VID_19D2&PID_0125&MI_01
+%ZTEDevice0126%   = ZTEportInstall, USB\VID_19D2&PID_0126&MI_01
+%ZTEDevice0128%   = ZTEportInstall, USB\VID_19D2&PID_0128&MI_01
+%ZTEDevice0162%   = ZTEportInstall, USB\VID_19D2&PID_0162&MI_02
+%ZTEDevice0144%   = ZTEportInstall, USB\VID_19D2&PID_0144&MI_02
+%ZTEDevice0145%   = ZTEportInstall, USB\VID_19D2&PID_0145&MI_02
+%ZTEDevice1402%   = ZTEportInstall, USB\VID_19D2&PID_1402&MI_01
+%ZTEDevice0153%   = ZTEportInstall, USB\VID_19D2&PID_0153&MI_02
+%ZTEDevice0155%   = ZTEportInstall, USB\VID_19D2&PID_0155&MI_01
+%ZTEDevice1401%   = ZTEportInstall, USB\VID_19D2&PID_1401&MI_01
+%ZTEDevice0156%   = ZTEportInstall, USB\VID_19D2&PID_0156&MI_01
+%ZTEDevice0157%   = ZTEportInstall, USB\VID_19D2&PID_0157&MI_01
+%ZTEDevice0158%   = ZTEportInstall, USB\VID_19D2&PID_0158&MI_01
+%ZTEDevice0159%   = ZTEportInstall, USB\VID_19D2&PID_0159&MI_01
+%ZTEDevice1404%   = ZTEportInstall, USB\VID_19D2&PID_1404&MI_03
+%ZTEDevice1247%   = ZTEportInstall, USB\VID_19D2&PID_1247&MI_01
+
+[ZTEportInstall.NT]
+CopyFiles=ZTEportInstall.NT.Copy
+AddReg = All, AddReg.NT
+
+[ZTEportInstall.NT.Copy]
+ZTEusbnmea.sys
+
+[ZTEportInstall.NT.Services]
+AddService = ZTEusbnmea, 0x00000002, ZTEport_Service_Inst
+
+[ZTEport_Service_Inst]
+DisplayName   = %ZTEcomSerialPortName%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\ZTEusbnmea.sys
+
+[All]
+HKR,,NTMPDriver,,ZTEusbnmea.sys
+
+[AddReg.NT]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+ZTE                    = "ZTE Corporation"
+ZTESRCDISK             = "ZTE Multimedia USB COM Driver Disk"
+ZTEcomSerialPortName   = "ZTE NMEA Port"
+ZTEDevice1402          = "ZTE UI AT Interface"
+ZTEDevice0001          = "ZTE NMEA Device"
+ZTEDevice0002          = "ZTE NMEA Device"
+ZTEDevice0012          = "ZTE NMEA Device"
+ZTEDevice0015          = "ZTE NMEA Device"
+ZTEDevice0025          = "Vodafone Mobile Broadband Secondary Port (ZTE)"
+ZTEDevice0030          = "ZTE NMEA Device"
+ZTEDevice0016          = "ZTE NMEA Device"
+ZTEDevice0017          = "ZTE NMEA Device"
+ZTEDevice0021          = "ZTE NMEA Device"
+ZTEDevice0031          = "ZTE NMEA Device"
+ZTEDevice0033          = "ZTE NMEA Device"
+ZTEDevice0042          = "ZTE NMEA Device"
+ZTEDevice0043          = "ZTE NMEA Device"
+ZTEDevice0048          = "ZTE NMEA Device"
+ZTEDevice0049          = "ZTE NMEA Device"
+ZTEDevice0052          = "Vodafone Mobile Broadband Secondary Port (ZTE)"
+ZTEDevice0055          = "Vodafone Mobile Broadband Secondary Port (ZTE)"
+ZTEDevice0061          = "ZTE NMEA Device"
+ZTEDevice0063          = "Vodafone Mobile Broadband Secondary Port (ZTE)"
+ZTEDevice0064          = "ZTE NMEA Device"
+ZTEDevice0066          = "ZTE NMEA Device"
+ZTEDevice0086          = "ZTE HU-USB NMEA Device"
+ZTEDevice0104          = "Vodafone Mobile Broadband Secondary Port (ZTE)"
+ZTEDevice2002          = "Vodafone Mobile Broadband Secondary Port (ZTE)"
+ZTEDevice2003          = "ZTE NMEA Device"
+ZTEDeviceFFEC          = "ZTE HS-USB NMEA Device"
+ZTEDevice0113          = "Vodafone Mobile Broadband Secondary Port (ZTE)"
+ZTEDevice0117          = "ZTE NMEA Device"
+ZTEDevice0118          = "Vodafone Mobile Broadband Secondary Port (ZTE)"
+ZTEDevice0121          = "ZTE AT Port"
+ZTEDevice0123          = "ZTE AT Port"
+ZTEDevice0124          = "ZTE AT Port"
+ZTEDevice0125          = "ZTE AT Port"
+ZTEDevice0126          = "ZTE AT Port"
+ZTEDevice0128          = "ZTE HS-USB NMEA Device"
+ZTEDevice0162          = "ZTE AT Port"
+ZTEDevice0144          = "ZTE AT Interface"
+ZTEDevice0145          = "ZTE AT Interface"
+ZTEDevice0153          = "ZTE UI AT Interface"
+ZTEDevice0155          = "ZTE UI AT Interface"
+ZTEDevice1401          = "ZTE UI AT Interface"
+ZTEDevice0156          = "ZTE UI AT Interface"
+ZTEDevice0157          = "T-Mobile AT Port"
+ZTEDevice0158          = "T-Mobile AT Port"
+ZTEDevice0159          = "AVEA AT Interface"
+ZTEDevice1404          = "ZTE UI AT Interface"
+ZTEDevice1245          = "ZTE UI AT Interface"
+ZTEDevice1247          = "ZTE UI AT Interface"
