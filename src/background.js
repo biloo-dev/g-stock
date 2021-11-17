@@ -5,10 +5,9 @@ import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 const isDevelopment = process.env.NODE_ENV !== "production"; 
 //  import Router from './Config/Router'
 const Router = require('./Config/Router');
-const log = require('electron-log');
-// Server = require('./Server/server.js')
+const log = require('electron-log'); 
 const { sequelize } = require('./Config/models')
-
+require('./server/start.js')
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: "app", privileges: { secure: true, standard: true } },

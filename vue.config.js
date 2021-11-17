@@ -8,7 +8,7 @@ module.exports = {
       nodeIntegration: true,
       preload: 'src/preload.js',
       externals: [ "intel","robotjs", 
-        "sqlite3", "sequelize", "sequelize-cli" ],
+        'knex', 'sqlite3', "sequelize", "sequelize-cli" ],
       mainProcessWatch: [
         "src/Config/Router/index.js",
         "src/Config/Settings/index.js",

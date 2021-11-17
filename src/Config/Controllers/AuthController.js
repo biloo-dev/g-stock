@@ -2,15 +2,17 @@ const { users, settings, clients } = require('../Models')
 const httpError = require('http-errors') 
 const path = require('path')
 const { signAccessToken, compare, hash  } = require('../Helpers/jwt_helper.js');
-const log = require('electron-log');
+const log = require('electron-log'); 
 // import settings from 'electron-settings';
 module.exports = {
  async login(req, res, next) {
-  try { 
+  try {  
+    let usedr = await knex('user')
+    console.log('usedr :>> ', usedr);
    let { email, password } = req.body
    let user = await users.findOne({ where: { email: email } })
+   throw "ERROR"
    if (!user || !compare(password, user.dataValues.password)) {
-    throw "ERROR"
    }
    let lifeTime = "6h"
    if (req.body.remeberMe) {
