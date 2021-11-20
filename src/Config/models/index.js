@@ -1,21 +1,19 @@
  
-const Sequelize = require('sequelize')
-const config = require('../config/config')
-const log = require('electron-log');
-const db = {}
-const sequelize = new Sequelize( config.db.database,  config.db.user, config.db.password, config.db.options  ) 
+'use strict'
  
+const knex = require('../config/knex') 
+const log = require('electron-log');
+const db = {} 
 try {
     
     const req = require.context('./', true, /\.(js)$/i); 
     req.keys().map(key => {
         if (!~key.indexOf('index')) {
-            const name = key.match(/\w+/)[0];
-            db[name] = req(key)(sequelize, Sequelize.DataTypes)
+            const name = key.match(/\w+/)[0]; 
+            db[name] = req(key)(knex)
         }
-    });
-    db.sequelize = sequelize
-    db.Sequelize = Sequelize
+    }); 
+    db.knex = knex
      
 } catch (err) {
     log.error('err requirement Model :>> ' , err);

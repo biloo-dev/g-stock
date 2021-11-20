@@ -61,7 +61,8 @@ module.exports = class Route extends Settings {
    }
   })
   ipcMain.handle('login', async (event, arg) => {
-   return await this.baxios("POST", '/login', arg, false).then(res => {
+      console.log('arg :>> ', arg);
+   return await this.baxios("get", '/login', arg, false).then(res => {
    log.info('login success >> :', res.data.accessToken)
     this.setToken('token', res.data.accessToken, 6)
     this.Notifications({
@@ -86,13 +87,12 @@ module.exports = class Route extends Settings {
     return false
    })
   })
- }
-
+ } 
  async autoSeed() {
   try { 
-   return await this.baxios("post", '/autoSeed')
+   return await this.baxios("get", '/autoSeed')
   } catch (err) {
-   // log.error('autoSeed >> :', err);
+   log.error('autoSeed >> :', err.message);
 
   }
  }

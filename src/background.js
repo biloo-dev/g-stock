@@ -1,13 +1,9 @@
 
 
-import { app, protocol } from "electron"; 
-import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
-const isDevelopment = process.env.NODE_ENV !== "production"; 
-//  import Router from './Config/Router'
+import { app, protocol } from "electron";  
+const isDevelopment = process.env.NODE_ENV !== "production";  
 const Router = require('./Config/Router');
-const log = require('electron-log'); 
-const { sequelize } = require('./Config/models')
-require('./server/start.js')
+const log = require('electron-log');   
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: "app", privileges: { secure: true, standard: true } },
@@ -28,9 +24,7 @@ app.on("activate", () => {
 }); 
 app.allowRendererProcessReuse=false
 app.on("ready", async () => {
-  try { 
-    await sequelize.sync()  
-    await sequelize.authenticate();
+  try {  
     log.info('Connection has been established successfully.');
     log.info('Database is running :>> '); 
     require('./Config/Router/routes.js')

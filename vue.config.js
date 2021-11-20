@@ -15,6 +15,7 @@ module.exports = {
         "src/Config/index.js",
         "src/Config/tools/utils.js",
         "src/Config/tools/getControllers.js",
+        "src/Config/Controllers/AuthController.js",
         "src/Config/Router/routes.js"
       ], 
       builderOptions: {
