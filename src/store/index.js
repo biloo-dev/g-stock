@@ -17,91 +17,14 @@ axios.interceptors.response.use(function (response) {
 Vue.use(Vuex) 
 export default new Vuex.Store({
  state: {
-  data: [],
-  clients: [],
-  loadClient: false,
-  isLogin: false,
-  settings: {},
-  historique: [],
-  djezzySetting: {},
-  djezzy: {},
-  mobilisSetting: {},
-  mobilis: {},
-  ooredooSetting: {},
-  ooredoo: {},
-  loadHist: false,
-  loadClient: false,
-  auth: [],
-  users: [],
-  isLoading: false,
-  manufactor: ['Cinterion', 'Huawei', 'Sierra Wireless', 'Simcom', 'Telit', 'ZTE', 'U-Blox']
+ 
  },
  getters: {
-  getClients: state => (id) => {
-   return state.clients.filter((e,i) => { 
-    state.clients[i].numeroPhoneList = typeof e.numeroPhoneList === "string" ? JSON.parse(e.numeroPhoneList) : e.numeroPhoneList
-    if (id) return e.type == id && e.id != 1 && e.id != 2
-    else return e 
-   })
-  },
-  getHistorique: state => (id, type) => {
-   return state.historique.filter(e => {  
-    if (id && type) return e.operateur === id && e.type == type
-    else if (!id || !type) return e.operateur === id || e.type == type
-    else return e 
-   })
-  },
-  getSettings: state => {
-   return state.settings
-  },
-  getDjezzySetting: state => {
-   return state.djezzySetting
-  },
-  getDobilisSetting: state => {
-   return state.mobilisSetting
-  },
-  getDoredooSetting: state => {
-   return state.ooredooSetting
-  },
+   
+   
  },
  mutations: { 
-  getSettings: async (state, settings) => {
-   try {
-    state.settings = settings
-    state.djezzySetting = settings[0]
-    state.mobilisSetting = settings[1]
-    state.ooredooSetting = settings[2]
-   } catch (err) {
-    console.log('err :>> ', err);
-   }
-  },
-  getDjezzy: async (state, data) => {
-   state.djezzy = data
-  //  state.loadDjezzy = false
-  },
-  getMobilis: async (state, data) => {
-   state.mobilis = data
-  //  state.loadMobilis = false
-  },
-  getOoredoo: async (state, data) => {
-   state.ooredoo = data
-  //  state.loadOoredoo = false
-  },
-  getHistorique: async (state, data) => {
-   state.historique = data
-   state.loadHist = false
-  },
-  getClients: async (state, data) => {
-   try {
-      state.loadClient = true
-      let { data } = await baxios('POST', 'getClients', null)
-      state.clients = data
-    state.loadClient = false
-    } catch (err) {
-      state.loadClient = false
-      console.log('err.response :>> ', err.response.status);
-    }
-  },
+   
   logout: async state => {
    state.isLoading = true
    try {
@@ -132,6 +55,8 @@ export default new Vuex.Store({
    state.isLoading = true
    try {
     state.isLogin = true  
+       console.log('sendLogin  oky :>> ');
+
     let result = await ipc.invoke("login", arr) 
     console.log('result :>> ', result);
     // state.auth = result.user 
@@ -158,81 +83,11 @@ export default new Vuex.Store({
   },
  },
  actions: {
-  getSettings: async ({ commit }) => {
-   try {
-    let { data } = await baxios('POST', '/getSettings', null) 
-    commit('getSettings', data);
-   } catch (err) {
-    console.log('err.response :>> ', err.response.status);
-   }
-  },
-  getDjezzy: async ({ commit },data) => {
-   try {
-     console.log('getDjezzya :>> ',data);
-    commit('getDjezzy', data);
-   } catch (err) {
-    console.log('err.response :>> ', err);
-   }
-  },
-  getMobilis: async ({ commit },data) => {
-    console.log('getMobilia :>> ',data);
-   try {
-    commit('getMobilis', data);
-   } catch (err) {
-    console.log('err.response :>> ', err);
-   }
-  },
-  getOoredoo: async ({ commit },data) => {
-   try {
-     console.log('getOoredoa :>> ',data);
-    commit('getOoredoo', data);
-   } catch (err) {
-    console.log('err.response :>> ', err);
-   }
-  },
-  getHistorique: async ({ commit, state }) => {
-   try {
-    state.loadHist = true
-    let {
-     data
-    } = await baxios('POST', 'getHistorique', null)
-    commit('getHistorique', data);
-   } catch (err) {
-    state.loadHist = false
-    console.log('err.response :>> ', err.response.status);
-   }
-  },
-  getClients: async ({ commit, state }) => { 
-    commit('getClients'); 
-  },
-  SendLogin: ({ commit }, arr) => {
-   commit('SendLogin', arr)
-  },
-  deleteClients: async ({ commit },arr) => {
-   try {
-    let { data } = await baxios('POST', '/deleteClients', arr) 
-    commit('getClients');
-   } catch (err) {
-    console.log('err :>> ', err);
-   }
-  },
-  reglreCredit: async ({ commit },arr) => {
-   try {
-    let { data } = await baxios('POST', '/reglreCredit', arr) 
-    commit('getClients');
-   } catch (err) {
-    console.log('err :>> ', err);
-   }
-  },
-  saveClients: async ({ commit },arr) => {
-   try {
-    let { data } = await baxios('POST', '/saveClients', arr) 
-    commit('getClients');
-   } catch (err) {
-    console.log('err :>> ', err);
-   }
-  } ,
-  logout: ({ commit }) => { commit('logout')},
-  editProfile: ({ commit }, data) => { commit('editProfile', data) },
+    SendLogin: ({ commit }, arr) => {
+        commit('SendLogin', arr)
+    },
+    
+    logout: ({ commit }) => { commit('logout')},
+    editProfile: ({ commit }, data) => { commit('editProfile', data) },
  },
 })

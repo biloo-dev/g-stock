@@ -37,7 +37,7 @@
     <v-card-text>
      <v-sheet min-height="200px">
       <v-form ref="form" v-model="valid" lazy-validation>
-       <v-text-field v-model="form.email" dense class="mb-2" hide-details="auto" outlined :rules="userNameRules" label="User Name" required></v-text-field>
+       <v-text-field v-model="form.username" dense class="mb-2" hide-details="auto" outlined :rules="userNameRules" label="User Name" required></v-text-field>
        <v-text-field v-model="form.password" dense class="mb-2" hide-details="auto" outlined :type="pass ? 'password' : 'text'" :rules="passwordRules" label="password" :append-icon="pass ? 'mdi-eye' : 'mdi-eye-off'" @click:append="pass = !pass" required>
        </v-text-field>
        <v-checkbox v-model="form.remeberMe" dense class="mb-2" hide-details="auto" outlined label="Keep me login ?" required></v-checkbox>
@@ -78,7 +78,7 @@ export default {
   valid: true,
   pass: true,
   form: {
-   email: "admin",
+   username: "admin",
    password: "admin123",
    remeberMe: false
   },
@@ -107,6 +107,7 @@ export default {
  methods: {
   validate() {
    if (this.$refs.form.validate()) {
+       console.log('btn Click oky :>> ');
     this.$store.dispatch("SendLogin", this.form); 
    }
   },

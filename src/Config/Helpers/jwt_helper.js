@@ -13,12 +13,12 @@ module.exports = {
   let salt = await bcrypt.genSalt(SALT_FUCTOR)
   return await bcrypt.hash(value, salt, null)
  },
- signAccessToken: (lifeTime, uid) => {
+signAccessToken: (uid , lifeTime) => {
   return new Promise((resolve, reject) => {
    const leyLoad = {}  
    const secret = config.auth.ACCESS_TOKEN_SECRET
    const options = {
-    expiresIn: lifeTime || config.auth.ISSUER,
+    expiresIn: lifeTime || config.auth.EXPIRESIN,
     issuer: config.auth.ISSUER,
     audience: uid + ""
    }

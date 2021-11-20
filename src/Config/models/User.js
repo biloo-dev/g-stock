@@ -1,6 +1,6 @@
 'use strict'
 
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt') 
 const createGuts = require('../helpers/model-guts')
 
 const name = 'User'
@@ -10,8 +10,9 @@ const tableName = 'users'
 // (e.g., `password` is not included and thus cannot be selected)
 const selectableProps = [
   'id',
+  'name',
   'username',
-  'email',
+  'password',
   'updated_at',
   'created_at'
 ]
@@ -29,7 +30,7 @@ const beforeSave = user => {
   // `password` will always be hashed before being saved.
   return hashPassword(user.password)
     .then(hash => ({ ...user, password: hash }))
-    .catch(err => `Error hashing password: ${ err }`)
+    .catch(err => `Error hashing password: ${err}`)
 }
 
 module.exports = knex => {
@@ -44,24 +45,16 @@ module.exports = knex => {
   const create = props => beforeSave(props)
     .then(user => guts.create(user))
 
-  const verify = (username, password) => {
-    const matchErrorMsg = `${username} or password do not match`
-
-    knex.select()
+  const verify = async (username, password) => {  
+    let user = await knex.select()
       .from(tableName)
+      .first()
       .where({ username })
-      .timeout(guts.timeout)
-      .then(user => {
-        if (!user) throw matchErrorMsg
-
-        return user
-      })
-      .then(user => Promise.all([user, verifyPassword(password, user.password)]))
-      .then(([user, isMatch]) => {
-        if (!isMatch) throw matchErrorMsg
-
-        return user
-      })
+      .timeout(guts.timeout)  
+    if (!user) return false
+    let isMatch = await verifyPassword(password, user.password) 
+    if (!isMatch) return false
+    return user  
   }
 
   return {
