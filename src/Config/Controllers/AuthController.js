@@ -7,8 +7,7 @@ const log = require('electron-log');
 module.exports = {
  async login(req, res, next) {
   try {  
-    let usedr = await knex('user')
-    console.log('usedr :>> ', usedr);
+    let usedr = await knex('user') 
    let { email, password } = req.body
    let user = await users.findOne({ where: { email: email } })
    throw "ERROR"
